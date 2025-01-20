@@ -1,25 +1,30 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+require('cypress-xpath');
+
+const { MongoClient } = require("mongodb");
+
+Cypress.Commands.add('connectToMongoDB', () => {
+    const uri = 'mongodb+srv://abuzar:RQ6qxIqpIwtxhZme@common-central.9hvbzh7.mongodb.net/test?retryWrites=true&w=majority&appName=Common-Central'; // Update with your credentials and URI
+
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(client.db('test'));
+            }
+        });
+    });
+});
+
+Cypress.Commands.add('fetchEquibaseEntries', () => {
+    return cy.connectToMongoDB().then((db) => {
+        const collection = db.collection('equibase_entries');
+        return collection.find({})
+            .sort({ createdAt: -1 }) // Sort by createdAt in descending order
+            .limit(1) // Limit to only the first document after sorting
+            .project({ trackId: 1, postTime: 1, raceDate: 1 }) // Select fields to return
+            .toArray();
+    });
+});
+// module.exports = (connectToMongoDB)
+// module.exports = (fetchEquibaseEntries)

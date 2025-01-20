@@ -14,7 +14,7 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
   });
   beforeEach(() => {
     cy.viewport("macbook-16");
-    cy.wait(2000);
+    cy.wait(4000);
   });
   // after(() => {
   //   cy.get(".mb-4 > .nav-item").click();
@@ -22,7 +22,8 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
   const randomNumber = Math.floor(100000 + Math.random() * 900000);
   let emailAddress = "moizulhaquekhan@gmail.com";
   let password = "Lmf@o123123123*";
-  let userName = "player" + randomNumber;
+  let userNameGenerator = "player" + randomNumber;
+  let userName = userNameGenerator
   let updatedUserName = userName + "(Upd)"
   let playerName = "Automation Test Name" + randomNumber;
   const serverId = "vd5hecny";
@@ -55,7 +56,7 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
           emailVerificationLink = email.html.links[0].href;
           // cy.get("email.html.links[0].href").click();
           cy.log(emailVerificationLink);
-          cy.wait(5000);
+          cy.wait(2000);
           cy.mai;
           cy.mailosaurDeleteAllMessages(serverId);
           cy.visit(emailVerificationLink);
@@ -87,6 +88,8 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
         cy.get(".chakra-button > .flex").click();
         cy.get(".input").clear().type("01/09/2001");
         cy.get(".h-full > :nth-child(2) > .p-3").click();
+        cy.get(".chakra-modal__content-container").click();
+        cy.wait(4000);
         cy.get(".pr-4 > :nth-child(3)").click({ force: true });
         cy.wait(2000);
         cy.get("#username").should("have.value", userName);
@@ -143,6 +146,19 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
     }
   );
 
+  describe("User Story 5: As a player, I want the ability to manually enter date along with date picker in the date of birth field in the Complete Profile Section.", () => {
+    it("Verify that the datepicker allows the user to select the date", () => {
+      cy.get(".mr-2").should("be.visible").click();
+      cy.get('select[name="years"]').select('1997');
+      cy.get('[role="gridcell"]').eq(14).click();
+    })
+
+    it("Verify that the user can manually enter the DOB", () => {
+      cy.get(".input").eq(2).clear().type("09/22/2007");
+      cy.get(".normal-btn").should("be.enabled").click();
+    });
+  })
+
   describe("User Story 4: As a player, I want to read the privacy policy and T&Cs before signing up", () => {
     it("Validate the Signup button to be disable if the checkbox is unchecked", () => {
       cy.get(".mb-4 > .nav-item").click({ force: true });
@@ -198,10 +214,6 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
     });
   });
 
-  describe("User Story 5: As a player, I want the ability to manually enter date along with date picker in the date of birth field in the Complete Profile Section.", () => {
-    it("Datepicker is visible", () => {
-      cy.get(".mr-2").should("be.visible").click();
-      cy.get("")
-    })
-  })
+
 });
+
