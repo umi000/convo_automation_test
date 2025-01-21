@@ -5,14 +5,14 @@ This repository contains automation tests for our application. To get started, f
 
 To run the test 
 
-Headed mode
+## Headed mode
 run npx cypress open
 
-Headless mode
+## Headless mode
 run npx cypress run
 
-Headless mode for a specific test file
-run npx cypress run --spec <File path>
+## Headless mode for a specific test file
+npx cypress run --spec (Test file path)
 
 
 ## Prerequisites
