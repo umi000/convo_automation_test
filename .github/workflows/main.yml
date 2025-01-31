@@ -30,7 +30,7 @@ jobs:
       # Step 4: Run E2E Tests
       - name: Run E2E Tests
       - working-directory: ./gos-automation
-        run: npx cypress run --browser chrome --headless --config-file cypress.config.js
+        run: npx cypress run --browser chrome --headless --config-file=cypress.config.ts
 
       # Step 5: Upload Artifacts (Optional)
       - name: Upload E2E Test Artifacts
