@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 const {
   connectToDatabase,
   fetchFirstSortedRecord,
-} = require("./cypress/helpers/dbHelper");
+} = require("../helpers/dbHelper");
 require("dotenv").config();
 const config = {
   mongoUri: process.env.Mongo_URI,
