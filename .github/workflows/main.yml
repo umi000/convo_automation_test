@@ -1,0 +1,38 @@
+name: Run Tests
+
+on:
+  repository_dispatch:
+    types: [automation-triggered]
+
+
+jobs:
+  e2e-tests:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set Up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Run E2E Tests
+      - name: Run E2E Tests
+        run: npx cypress run --browser chrome --headless --config-file cypress.config.js
+
+      # Step 5: Upload Artifacts (Optional)
+      - name: Upload E2E Test Artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cypress-Test-Artifacts
+          path: cypress/videos
