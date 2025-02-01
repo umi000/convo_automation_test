@@ -11,31 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout Code
+      # Step 1: Log Event Details
+      - name: Log Event Details
+        run: |
+          echo "Triggered by: ${{ github.event.client_payload.trigger_by }}"
+          echo "Source Repo: ${{ github.event.client_payload.source_repo }}"
+          echo "Branch: ${{ github.event.client_payload.branch }}"
+
+      # Step 2: Checkout Automation Repo
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          path: 'gos-automation'
-
-      # Step 2: Set Up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
 
       # Step 3: Install Dependencies
       - name: Install Dependencies
         run: npm install
 
-      # Step 4: Run E2E Tests
-      - name: Run E2E Tests
-      - working-directory: ./gos-automation
-        run: npx cypress run --browser chrome --headless --config-file=cypress.config.ts
+      # Step 4: Run Cypress Tests
+      - name: Run Cypress Tests
+        run: npx cypress run --browser chrome --headless
 
-      # Step 5: Upload Artifacts (Optional)
-      - name: Upload E2E Test Artifacts
-        if: failure()
-        uses: actions/upload-artifact@v4
+      # Step 5: Upload Test Artifacts
+      - name: Upload Cypress Artifacts
+        uses: actions/upload-artifact@v3
         with:
           name: Cypress-Test-Artifacts
           path: cypress/videos
