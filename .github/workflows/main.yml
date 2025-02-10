@@ -2,35 +2,29 @@ name: Run Tests
 
 on:
   repository_dispatch:
-    types: [automation-triggered]
-
+    types: [admin, player]
 
 jobs:
-  e2e-tests:
-    name: Run E2E Tests
+  run_tests:
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Log Event Details
-      - name: Log Event Details
-        run: |
-          echo "Triggered by: ${{ github.event.client_payload.trigger_by }}"
-          echo "Source Repo: ${{ github.event.client_payload.source_repo }}"
-          echo "Branch: ${{ github.event.client_payload.branch }}"
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # Step 2: Checkout Automation Repo
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      # Step 3: Install Dependencies
       - name: Install Dependencies
         run: npm install
 
-      # Step 4: Run Cypress Tests
-      - name: Run Cypress Tests
-        run: npx cypress run --browser chrome --headless
+      - name: Run Tests
+        run: |
+          if [[ "${{ github.event.action }}" == "admin" ]]; then
+            echo "Running admin tests..."
+            npx cypress run
+          elif [[ "${{ github.event.action }}" == "player" ]]; then
+            echo "Running player tests..."
+            npx cypress run
 
-      # Step 5: Upload Test Artifacts
+            
+          fi
       - name: Upload Cypress Artifacts
         uses: actions/upload-artifact@v3
         with:
