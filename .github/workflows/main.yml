@@ -2,7 +2,7 @@ name: Run Tests
 
 on:
   repository_dispatch:
-    types: [admin, player]
+    types: [gos-admin, gos-player]
 
 jobs:
   run_tests:
@@ -16,13 +16,12 @@ jobs:
 
       - name: Run Tests
         run: |
-          if [[ "${{ github.event.action }}" == "admin" ]]; then
+          if [[ "${{ github.event.action }}" == "gos-admin" ]]; then
             echo "Running admin tests..."
             npx cypress run
-          elif [[ "${{ github.event.action }}" == "player" ]]; then
+          elif [[ "${{ github.event.action }}" == "gos-player" ]]; then
             echo "Running player tests..."
             npx cypress run
-
             
           fi
       - name: Upload Cypress Artifacts
