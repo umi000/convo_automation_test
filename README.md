@@ -4,7 +4,7 @@
 This repository contains automation tests for our application. To get started, follow the instructions below to set up your environment and run the tests.
 
 To run the test 
-
+[![CI/CD Pipeine](https://github.com/umi000/convo_automation_test/actions/workflows/static.yml/badge.svg?event=workflow_run)](https://github.com/umi000/convo_automation_test/actions/workflows/static.yml)
 ## Headed mode
 run npx cypress open
 
