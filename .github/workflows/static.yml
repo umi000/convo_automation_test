@@ -55,11 +55,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'  # Adjust as necessary for your static content
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+  #       - name: Verify Cypress Artifacts
+  # run: ls -R cypress  # List contents of the cypress directory
+
+# - name: Upload Test Artifacts
+#   if: always()  # Ensure this runs even if the tests fail
+#   uses: actions/upload-artifact@v3  # Make sure this version is the latest
+#   with:
+#     name: cypress-artifacts
+#     path: |
+#       cypress/videos/
+#       cypress/screenshots/
+#       cypress/results/  # Adjust based on your report output paths
