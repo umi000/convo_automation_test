@@ -40,10 +40,9 @@ jobs:
           path: |
             cypress/videos/
             cypress/screenshots/
-            cypress/results/  # Adjust based on your report output paths
-
+            cypress/reports/  # Adjust based on your report output paths
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: cypress-verify  # Ensures this job runs only after the Cypress tests complete
     if: success()  # Only run deploy if the previous job succeeded
     environment:
@@ -58,15 +57,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-  #       - name: Verify Cypress Artifacts
-  # run: ls -R cypress  # List contents of the cypress directory
-
-# - name: Upload Test Artifacts
-#   if: always()  # Ensure this runs even if the tests fail
-#   uses: actions/upload-artifact@v3  # Make sure this version is the latest
-#   with:
-#     name: cypress-artifacts
-#     path: |
-#       cypress/videos/
-#       cypress/screenshots/
-#       cypress/results/  # Adjust based on your report output paths
