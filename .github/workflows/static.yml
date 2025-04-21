@@ -31,16 +31,6 @@ jobs:
 
       - name: Run Cypress tests
         run: npm run cypress:run  # Ensure you have this script defined in package.json
-
-      - name: Upload Test Artifacts
-        if: always()  # Ensure this runs even if the tests fail
-        uses: actions/upload-artifact@v3  # Updated version
-        with:
-          name: cypress-artifacts
-          path: |
-            cypress/videos/
-            cypress/screenshots/
-            cypress/reports/  # Adjust based on your report output paths
   deploy:
     runs-on: windows-latest
     needs: cypress-verify  # Ensures this job runs only after the Cypress tests complete
