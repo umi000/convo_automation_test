@@ -23,30 +23,9 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
     cy.viewport("macbook-16");
     cy.wait(2000);
   });
-  // after(() => {
-  //   cy.get(".mb-4 > .nav-item").click();
-  // });
   const randomNumber = Math.floor(100000 + crypto.randomInt(50) * 900000);
   let emailAddress ;
   let password ;
-  let userName = "player" + randomNumber;
-  let updatedUserName = userName + "(Upd)"
-  let playerName = "Automation Test Name" + randomNumber;
-  const serverId = "vd5hecny";
-  const serverDomain = "vd5hecny.mailosaur.net";
-  const tempEmail =
-    "stableStakesAutomation" + "+" + randomNumber + "@" + serverDomain;
-  let emailVerificationLink = "";
-  let postTime = "";
-  let raceDate = "";
-  let trackId = "";
-  let postTimeDate = "";
-  let postTimeHours = "";
-  let postTimeMinutes = "";
-  let raceDateDate = "";
-  let raceDateYear = "";
-  let raceDateMonth = "";
-  let raceDateDateDay = "";
   let formattedFutureDate = "";
   let seasonName = formattedFutureDate + "-" + "Gulftest" + "-" + randomNumber;
   let contestName = seasonName + "Contest";
@@ -76,7 +55,6 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
           const year = currentDate.getFullYear();
           const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // month is zero-indexed
           const day = String(currentDate.getDate()).padStart(2, '0');
-          const formattedDate = `${year}-${month}-${day}`;
           
           cy.xpath("//button[contains(@class,'p-3 primary-btn')]").click();
           cy.get("#name").clear().type(seasonName)
@@ -85,7 +63,6 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
           cy.get(':nth-child(5) > .ant-picker > .ant-picker-input > input').click();
           cy.get('[aria-label="next-year"]').eq(1).click().click().click().click();
           cy.get("table.ant-picker-content").eq(1).find("div.ant-picker-cell-inner").contains(formattedFutureEndDate).click({ force: true });
-          // cy.get("div.ant-picker-cell-inner").contains(formattedFutureEndDate).click({ force: true });
           cy.xpath("(//button[contains(@class,'p-3 primary-btn')])[2]").click();
           cy.contains("New season successfully created");
           cy.get(".chakra-spinner", { timeout: 40000 }).should("not.exist", { timeout: 40000 });

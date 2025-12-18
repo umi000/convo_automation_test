@@ -17,9 +17,6 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
     cy.viewport("macbook-16");
     cy.wait(4000);
   });
-  // after(() => {
-  //   cy.get(".mb-4 > .nav-item").click();
-  // });
   const randomNumber = Math.floor(100000 + crypto.randomInt(50) * 900000);
   let emailAddress ;
   let password;
@@ -55,7 +52,6 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
         }).then((email) => {
           cy.log(tempEmail, email.subject);
           emailVerificationLink = email.html.links[0].href;
-          // cy.get("email.html.links[0].href").click();
           cy.log(emailVerificationLink);
           cy.wait(2000);
           cy.mai;
@@ -102,18 +98,8 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
     "User Story 2: As a player, I want the ability to edit my username from the Edit Profile Section so that I can update my username.",
     { testIslation: true },
     () => {
-      // it("Navigate to Login page and login into the account", () => {
-      //   cy.get("span.flex > .navbar-btn").click({ force: true });
-      //   cy.wait(1500);
-      //   cy.get("#email").type(emailAddress);
-      //   cy.get("#password").type(password);
-      //   cy.get(".h-full > :nth-child(2) > .blue-btn").click();
-      //   cy.wait(3500);
-      // });
 
       it("Validate the username is correct", () => {
-        // cy.get(".pr-4 > :nth-child(3)").click();
-        // cy.wait(2000);
         cy.get("#username").should("have.value", userName);
       });
 
