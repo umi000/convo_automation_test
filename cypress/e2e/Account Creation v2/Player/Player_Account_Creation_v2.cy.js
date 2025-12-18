@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 import "cypress-mailosaur";
+const crypto = require("crypto");
 describe("GOS Account Creation", { testIsolation: false }, () => {
   before(() => {
     cy.visit("");
@@ -19,9 +20,9 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
   // after(() => {
   //   cy.get(".mb-4 > .nav-item").click();
   // });
-  const randomNumber = Math.floor(100000 + Math.random() * 900000);
-  let emailAddress = "moizulhaquekhan@gmail.com";
-  let password = "Lmf@o123123123*";
+  const randomNumber = Math.floor(100000 + crypto.randomInt(50) * 900000);
+  let emailAddress ;
+  let password;
   let userNameGenerator = "player" + randomNumber;
   let userName = userNameGenerator
   let updatedUserName = userName + "(Upd)"

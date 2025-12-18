@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 {
     "baseUrl":"https://staging.stablestakesiq.com/"
+=======
+{
+    "baseUrl":"https://develop.stablestakesiq.com/"
+>>>>>>> f236a75be5add215e4a825c9ec7360b16fb1b761
 }

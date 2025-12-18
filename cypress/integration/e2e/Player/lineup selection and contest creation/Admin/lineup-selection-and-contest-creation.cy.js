@@ -26,9 +26,9 @@ describe("GOS Account Creation", { testIsolation: false }, () => {
   // after(() => {
   //   cy.get(".mb-4 > .nav-item").click();
   // });
-  const randomNumber = Math.floor(100000 + Math.random() * 900000);
-  let emailAddress = "tahir@plutus21.com";
-  let password = "N8Aa1@ItpZqIdqZV";
+  const randomNumber = Math.floor(100000 + crypto.randomInt(50) * 900000);
+  let emailAddress ;
+  let password ;
   let userName = "player" + randomNumber;
   let updatedUserName = userName + "(Upd)"
   let playerName = "Automation Test Name" + randomNumber;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "gos-automation",
   "version": "1.0.0",
@@ -54,3 +55,63 @@
   "author": "Automation Team",
   "license": "MIT"
 }
+=======
+{
+  "name": "gos-automation",
+  "version": "1.0.0",
+  "description": "GOS Web Automation project.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@4tw/cypress-drag-drop": "^2.1.0",
+    "autoprefixer": "latest",
+    "chart.js": "latest",
+    "cypress-mongodb": "^6.2.1",
+    "cypress-real-events": "^1.7.0",
+    "date-fns": "latest",
+    "ethers": "latest",
+    "mongoose": "^8.9.5",
+    "next": "latest",
+    "postcss": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwindcss": "latest",
+    "uuid": "latest",
+    "wagmi": "latest",
+    "web3modal": "latest",
+    "zustand": "latest"
+  },
+  "devDependencies": {
+    "@cypress/skip-test": "^2.5.0",
+    "@faker-js/faker": "^6.0.0",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/node": "^22.10.7",
+    "@types/react": "latest",
+    "cypress": "^13.17.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-localstorage-commands": "^1.7.0",
+    "cypress-mailosaur": "^2.17.0",
+    "cypress-mochawesome-reporter": "^2.4.0",
+    "cypress-wait-until": "^1.7.1",
+    "cypress-xpath": "^1.8.0",
+    "dotenv": "^16.4.7",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "husky": "latest",
+    "jest": "latest",
+    "lint-staged": "latest",
+    "mailslurp-client": "^15.21.0",
+    "mocha-foo-reporter": "^0.0.1",
+    "prettier": "latest",
+    "typescript": "latest"
+  },
+  "author": "Automation Team",
+  "license": "MIT"
+}
+>>>>>>> f236a75be5add215e4a825c9ec7360b16fb1b761
